@@ -1,34 +1,22 @@
 import Timeline from "@material-ui/lab/Timeline";
 import {
-  TimelineConnector,
   TimelineContent,
   TimelineDot,
   TimelineItem,
   TimelineOppositeContent,
   TimelineSeparator,
 } from "@material-ui/lab";
-import { Typography } from "@material-ui/core";
 import React from "react";
 import RoundImage from "../common/RoundImage";
-import styled from "styled-components";
 import jobs from "../../data/jobs";
 import Fade from "@material-ui/core/Fade";
-
-const StyledConnector = styled(TimelineConnector)`
-  min-height: 50px;
-`;
-
-const DurationTypography = styled(Typography)`
-  font-size: 15px !important;
-`;
-
-const TeamText = styled.div`
-  font-size: 20px;
-`;
-
-const DescriptionText = styled.div`
-  font-size: 15px;
-`;
+import {
+  DescriptionText,
+  DurationTypography,
+  StyledConnector,
+  TeamText,
+  TechText,
+} from "./style";
 
 const JobTimeline = () => {
   return (
@@ -37,6 +25,7 @@ const JobTimeline = () => {
         <Fade in timeout={(index + 1) * 1000}>
           <TimelineItem>
             <TimelineOppositeContent>
+              <b>{job.company_name}</b>
               <DurationTypography
                 variant="overline"
                 display="block"
@@ -46,25 +35,26 @@ const JobTimeline = () => {
               </DurationTypography>
             </TimelineOppositeContent>
             <TimelineSeparator>
-              <TimelineDot color="primary">
-                <RoundImage
-                  src={job.image}
-                  alt={job.company_name}
-                  size={job.current ? "125px" : "75px"}
-                />
+              <TimelineDot color={job.current ? "inherit" : "primary"}>
+                <a href={job.href}>
+                  <RoundImage
+                    src={job.image}
+                    alt={job.company_name}
+                    size={job.current ? "125px" : "75px"}
+                  />
+                </a>
               </TimelineDot>
               {index !== jobs.length - 1 && <StyledConnector />}
             </TimelineSeparator>
             <TimelineContent>
               <b>{job.title}</b>
-              <br />
               {job.team && (
                 <>
                   <TeamText>{job.team}</TeamText>
                 </>
               )}
-              <br />
               <DescriptionText>{job.description}</DescriptionText>
+              <TechText>{job.tech.join(" · ")}</TechText>
             </TimelineContent>
           </TimelineItem>
         </Fade>

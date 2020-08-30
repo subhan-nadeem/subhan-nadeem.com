@@ -1,31 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import myPicture from "../../img/myPicture.jpg";
-import { Centered, Page, profilePicSize } from "./style";
+import {
+  Centered,
+  InstagramFeed,
+  InstagramHandle,
+  LinkNoColor,
+  Page,
+  ProfileAvatar,
+  TooltipText,
+} from "./style";
 import JobTimeline from "../JobTimeline/JobTimeline";
-import RoundImage from "../common/RoundImage";
 import GitHubIcon from "@material-ui/icons/GitHub";
-import styled from "styled-components";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import { Fade, Tooltip } from "@material-ui/core";
-import DescriptionIcon from "@material-ui/icons/Description";
-
-const LinkNoColor = styled.a`
-  color: unset;
-`;
-
-const TooltipText = styled.span`
-  font-size: 15px;
-`;
+import InstagramIcon from "@material-ui/icons/Instagram";
+import { Tooltip } from "@material-ui/core";
+import { useInstagramFeed } from "../hooks/useInstagramFeed";
 
 function App() {
+  useInstagramFeed();
   return (
     <Page>
-      <RoundImage
-        src={myPicture}
-        size={profilePicSize}
-        alt={"me"}
-        offset={"-24%"}
-      />
+      <ProfileAvatar src={myPicture} alt={"me"} />
       <h1>Subhan Nadeem</h1>
       <Centered>
         <Tooltip title={<TooltipText>LinkedIn</TooltipText>} placement="top">
@@ -51,6 +46,10 @@ function App() {
         </Tooltip>*/}
       </Centered>
       <JobTimeline />
+      <LinkNoColor href="https://instagram.com/subhan.photo" target="_blank">
+        <InstagramIcon /> <InstagramHandle>@subhan.photo</InstagramHandle>
+      </LinkNoColor>
+      <InstagramFeed id="pixlee_container"></InstagramFeed>
     </Page>
   );
 }
