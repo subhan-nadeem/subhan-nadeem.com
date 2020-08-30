@@ -7,7 +7,6 @@ import {
   TimelineSeparator,
 } from "@material-ui/lab";
 import { Paper, Typography } from "@material-ui/core";
-import Timeline from "@material-ui/lab/Timeline";
 import React from "react";
 
 const JobTimelineItem = () => {

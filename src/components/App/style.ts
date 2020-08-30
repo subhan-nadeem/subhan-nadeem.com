@@ -21,13 +21,6 @@ const Page = styled.div`
   overflow: auto;
 `;
 
-const ProfileAvatar = styled(Avatar)`
-  && {
-    height: ${profilePicSize};
-    width: ${profilePicSize};
-  }
-`;
-
 const LinkNoColor = styled.a`
   color: unset;
   font-style: normal;
@@ -53,12 +46,20 @@ const InstagramHandle = styled.span`
   display: block;
 `;
 
+const ProfileAvatarStyles = css<{ isLoaded: boolean }>`
+  && {
+    height: ${profilePicSize};
+    width: ${profilePicSize};
+    display: ${(props) => (props.isLoaded ? "block" : "hidden")};
+  }
+`;
+
 export {
   Centered,
   Page,
-  ProfileAvatar,
   LinkNoColor,
   TooltipText,
   InstagramFeed,
   InstagramHandle,
+  ProfileAvatarStyles,
 };

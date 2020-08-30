@@ -26,10 +26,18 @@ const TechText = styled.p`
   font-family: "Consolas";
   font-size: 14px;
 `;
+
+const Clickable = styled.a`
+  :hover {
+    cursor: pointer;
+  }
+`;
+
 export {
   StyledConnector,
   DurationTypography,
   TeamText,
   DescriptionText,
   TechText,
+  Clickable,
 };
